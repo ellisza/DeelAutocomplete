@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   background-color: #282c34;
+  background-size: cover;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -17,12 +18,39 @@
 .Box {
   padding: 50px;
   width: 500px;
+  height: 300px;
   border: 2px #61dafb;
   border-style: solid;
   border-radius: 10px;
 }
 
 .Instructions {
+  margin-bottom: 25px;
+  padding-top: 5px;
+}
+
+.Title {
   padding-bottom: 5px;
   padding-top: 5px;
+}
+
+.InputBox {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+.Option{
+  padding: 3px;
+  background-color: aliceblue;
+  color: black;
+}
+
+.Option:hover{
+  background-color: aquamarine;
+}
+
+.AutocompleteList {
+  height:300px;
+  overflow-y: auto;
+  position: relative;
 }

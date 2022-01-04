@@ -35,12 +35,12 @@ const Autocomplete: FC<AutocompleteProps> = ({ data }) => {
     };
 
     const suggestionSelected = (value: ItemData) => {
-        setIsComponentVisible(false);
-
         setSearch({
             text: value.name,
             suggestions: []
         });
+
+        setIsComponentVisible(false);
     };
 
     const { suggestions } = search;
@@ -48,11 +48,11 @@ const Autocomplete: FC<AutocompleteProps> = ({ data }) => {
   return (
     <>
         <div className="Box">
-            <div className="Instructions">
+            <div className="Title">
                 <h2>Autocomplete Task</h2>
             </div>
             <div className="Instructions">
-                <span>This autocompletes country names:</span>
+                <span>Autocomplete with country names:</span>
             </div>
             
             <div
@@ -70,6 +70,7 @@ const Autocomplete: FC<AutocompleteProps> = ({ data }) => {
             />
             <div>
                 <input
+                className="InputBox"
                 id="input"
                 autoComplete="off"
                 value={search.text}
@@ -80,9 +81,11 @@ const Autocomplete: FC<AutocompleteProps> = ({ data }) => {
             {suggestions.length > 0 && isComponentVisible && (
                 <div className="AutocompleteList">
                     {suggestions.map((item: ItemData) => (
-                        <span>
-                            {item.name}
-                        </span>
+                        <div onClick={() => suggestionSelected(item)} className="Option">
+                            <span>
+                                {item.name}
+                            </span>
+                        </div>
                     ))}
                 </div>
             )}
