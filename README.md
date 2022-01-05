@@ -21,3 +21,4 @@ The application should now be available on your local host at port 3000.
 
 I am finishing this portion of the task at around 1 hour and 45 minutes. I began at 12:12 and am finished now at 1:57. 
 
+This could be extended to autocomplete word by word after spaces, for the purpose of the task I held it to just one word as though it were a form for entering country of origin. 
