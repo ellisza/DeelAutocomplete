@@ -11,6 +11,7 @@ interface ItemData {
 }
 
 const Autocomplete: FC<AutocompleteProps> = ({ data }) => {
+
     const [search, setSearch] = useState({
         text: "",
         suggestions: [] as ItemData[]
@@ -18,19 +19,21 @@ const Autocomplete: FC<AutocompleteProps> = ({ data }) => {
 
     const [isComponentVisible, setIsComponentVisible] = useState(true);
 
-    const onTextChanged = async (e: ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
+    const matchFunction = async (value: any) => {
         let suggestions : ItemData[] = [];
-        try{
-            if (value.length > 0) {
-                const regex = new RegExp(`^${value}`, "i");
-                suggestions = data.sort().filter((v: ItemData) => regex.test(v.name));
-            }
-            setIsComponentVisible(true);
-            setSearch({ text: value, suggestions });
+        if (value.length > 0) {
+            const regex = new RegExp(`^${value}`, "i");
+            suggestions = data.sort().filter((v: ItemData) => regex.test(v.name));
         }
-        catch(error) {
-            console.error("Couldn't get data");
+        setIsComponentVisible(true);
+        setSearch({ text: value, suggestions });
+    }
+
+    const onTextChanged = async (e: ChangeEvent<HTMLInputElement>) => {
+        try{
+            await(matchFunction(e.target.value));
+        } catch (error) {
+            console.log(error);
         }
     };
 
@@ -69,7 +72,7 @@ const Autocomplete: FC<AutocompleteProps> = ({ data }) => {
                 }}
             />
             <div>
-                <input
+                <input 
                 className="InputBox"
                 id="input"
                 autoComplete="off"
